@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import NimGameTitle from "./assets/NimGameTitle";
+import Cloud1 from "./assets/Cloud1";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       height={"100%"}
     >
       <NimGameTitle height="50px" />
+      <Cloud1 height="50px" />
     </Grid>
   );
 }

@@ -11,12 +11,17 @@ const NimGameTitle: FC<NimGameTitleProps> = ({
   width = "auto",
 }) => {
   return (
-    <Grid item height={height} width={width} display={"block"}>
+    <Grid item height={height} width={width} display={"block"} zIndex={"20"}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shape-rendering="crispEdges"
         viewBox="13.5 16.5 75 11"
-        style={{ display: "block", width: "100%", height: "100%" }}
+        style={{
+          display: "block",
+          width: "100%",
+          height: "100%",
+          filter: "drop-shadow(5px 10px 0px  rgba(0, 0, 0, 0.5))",
+        }}
       >
         <path stroke="#ff334e" d="M26 17h1" />
         <path stroke="#a30016" d="M27 17h1" />
