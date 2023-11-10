@@ -35,7 +35,7 @@ type PixelButtonProps = {
 };
 
 const PixelButton: FC<PixelButtonProps> = ({
-  height = "90px",
+  height = "13%",
   width = "auto",
   color = "6b2429",
   text,
@@ -72,6 +72,9 @@ const PixelButton: FC<PixelButtonProps> = ({
         setOnHover(false);
       }}
       {...rest}
+      style={{
+        filter: "drop-shadow(5px 10px 0px  rgba(0, 0, 0, 0.5))",
+      }}
     >
       <Grid
         container
@@ -83,11 +86,13 @@ const PixelButton: FC<PixelButtonProps> = ({
         justifyContent={"center"}
         alignItems={"center"}
         justifyItems={"center"}
-        style={{ cursor: "pointer" }}
+        style={{
+          cursor: "pointer",
+        }}
       >
         <Typography
           color={onMouseDown ? "lightgray" : "white"}
-          fontSize={"20px"}
+          fontSize={"3vh"}
           style={{
             textShadow: onMouseDown ? "2px 2px black" : "",
             userSelect: "none",

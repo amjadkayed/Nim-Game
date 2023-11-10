@@ -1,15 +1,14 @@
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
-import NimGameTitle from "./assets/NimGameTitle";
-import Cloud1 from "./assets/Cloud1";
-import PixelButton from "./components/PixelButton";
 import "./index.css";
+import MainMenu from "./Pages/MainMenuPage/MainMenu";
 
-function App() {
+const App = () => {
   const theme = createTheme({
     typography: {
       fontFamily: '"Public Pixel", sans-serif;',
     },
   });
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -22,29 +21,10 @@ function App() {
         height={"100%"}
         position={"relative"}
       >
-        <PixelButton
-          color={"#298D72"}
-          top={"300px"}
-          position={"relative"}
-          text="play"
-        />
-        <PixelButton
-          color={"#99343b"}
-          top={"300px"}
-          position={"relative"}
-          text="help"
-        />
-        <PixelButton
-          color={"#9E9E9E"}
-          top={"300px"}
-          position={"relative"}
-          text="settings"
-        />
-        <NimGameTitle height="100px" />
-        <Cloud1 height="50px" />
+        <MainMenu />
       </Grid>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
