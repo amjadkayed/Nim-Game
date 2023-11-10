@@ -23,11 +23,22 @@ function App() {
         position={"relative"}
       >
         <PixelButton
-          height="70px"
+          color={"#298D72"}
+          top={"300px"}
+          position={"relative"}
+          text="play"
+        />
+        <PixelButton
           color={"#99343b"}
           top={"300px"}
           position={"relative"}
-          text="hello"
+          text="help"
+        />
+        <PixelButton
+          color={"#9E9E9E"}
+          top={"300px"}
+          position={"relative"}
+          text="settings"
         />
         <NimGameTitle height="100px" />
         <Cloud1 height="50px" />
