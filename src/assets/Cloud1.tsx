@@ -4,9 +4,14 @@ import { FC } from "react";
 type Cloud1Props = {
   height?: string;
   width?: string;
+  [key: string]: unknown;
 };
 
-const Cloud1: FC<Cloud1Props> = ({ height = "auto", width = "auto" }) => {
+const Cloud1: FC<Cloud1Props> = ({
+  height = "auto",
+  width = "auto",
+  ...rest
+}) => {
   return (
     <Grid
       item
@@ -14,8 +19,7 @@ const Cloud1: FC<Cloud1Props> = ({ height = "auto", width = "auto" }) => {
       width={width}
       display={"block"}
       position={"absolute"}
-      left={"400px"}
-      top={'150px'}
+      {...rest}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,9 +31,6 @@ const Cloud1: FC<Cloud1Props> = ({ height = "auto", width = "auto" }) => {
           height: "100%",
         }}
       >
-        <metadata>
-          Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
-        </metadata>
         <path
           stroke="#000000"
           d="M213 86h4M212 87h1M217 87h1M211 88h1M218 88h1M210 89h1M219 89h1M209 90h1M220 90h1M209 91h1M221 91h1M229 91h4M208 92h1M221 92h1M228 92h1M233 92h2M207 93h1M222 93h1M226 93h2M235 93h1M180 94h5M195 94h4M206 94h1M222 94h1M225 94h1M235 94h2M179 95h1M185 95h3M193 95h2M199 95h1M206 95h1M223 95h2M237 95h1M178 96h1M188 96h1M192 96h1M199 96h1M205 96h1M223 96h1M237 96h1M178 97h1M189 97h1M191 97h1M200 97h1M204 97h1M238 97h1M177 98h1M190 98h1M200 98h1M202 98h2M239 98h1M177 99h1M200 99h2M239 99h1M176 100h1M240 100h1M176 101h1M240 101h1M175 102h1M240 102h1M175 103h1M240 103h1M174 104h1M240 104h1M174 105h1M240 105h1M174 106h1M239 106h1M174 107h1M239 107h1M174 108h1M237 108h2M174 109h1M236 109h1M168 110h1M174 110h1M235 110h1M166 111h2M169 111h1M171 111h4M217 111h1M234 111h1M165 112h1M169 112h2M174 112h2M215 112h2M218 112h1M232 112h2M160 113h2M164 113h1M168 113h2M174 113h1M176 113h1M186 113h5M212 113h3M219 113h13M159 114h1M162 114h1M164 114h1M168 114h1M170 114h4M177 114h2M182 114h4M191 114h3M207 114h5M160 115h2M165 115h3M179 115h3M194 115h13"

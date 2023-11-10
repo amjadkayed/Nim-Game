@@ -4,14 +4,24 @@ import { FC } from "react";
 type NimGameTitleProps = {
   height?: string;
   width?: string;
+  [key: string]: unknown;
 };
 
 const NimGameTitle: FC<NimGameTitleProps> = ({
   height = "auto",
   width = "auto",
+  ...rest
 }) => {
   return (
-    <Grid item height={height} width={width} display={"block"} zIndex={"20"}>
+    <Grid
+      item
+      height={height}
+      width={width}
+      display={"block"}
+      zIndex={"20"}
+      position={"absolute"}
+      {...rest}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         shape-rendering="crispEdges"
