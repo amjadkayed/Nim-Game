@@ -1,30 +1,29 @@
 import { Grid, Typography } from "@mui/material";
 import { FC, useState } from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import useSound from "use-sound";
 import HoverOnButtonSound from "../Sounds/HoverOnButton.mp3";
 import onButtonClickSound from "../Sounds/ButtonMouseClick.mp3";
 import "../index.css";
 
-const newShade = (hexColor: string, magnitude: number) => {
-  hexColor = hexColor.replace(`#`, ``);
-  if (hexColor.length === 6) {
-    const decimalColor = parseInt(hexColor, 16);
-    let r = (decimalColor >> 16) + magnitude;
-    r > 255 && (r = 255);
-    r < 0 && (r = 0);
-    let g = (decimalColor & 0x0000ff) + magnitude;
-    g > 255 && (g = 255);
-    g < 0 && (g = 0);
-    let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
-    b > 255 && (b = 255);
-    b < 0 && (b = 0);
-    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
-  } else {
-    return hexColor;
-  }
-};
+function newShade(color: any, percent: any) {
+  const num: any = parseInt(color.replace("#", ""), 16),
+    amt = Math.round(2.55 * percent),
+    R = (num >> 16) + amt,
+    B = ((num >> 8) & 0x00ff) + amt,
+    G = (num & 0x0000ff) + amt;
+  return (
+    "#" +
+    (
+      0x1000000 +
+      (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+      (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 +
+      (G < 255 ? (G < 1 ? 0 : G) : 255)
+    )
+      .toString(16)
+      .slice(1)
+  );
+}
 
 type PixelButtonProps = {
   height?: string;
@@ -37,7 +36,7 @@ type PixelButtonProps = {
 const PixelButton: FC<PixelButtonProps> = ({
   height = "13%",
   width = "auto",
-  color = "6b2429",
+  color = "#6b2429",
   text,
   ...rest
 }) => {
@@ -45,6 +44,7 @@ const PixelButton: FC<PixelButtonProps> = ({
   const [onMouseDown, setOnMouseDown] = useState(false);
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
   const [playSoundOnClick] = useSound(onButtonClickSound);
+  
   return (
     <Grid
       item
@@ -56,11 +56,9 @@ const PixelButton: FC<PixelButtonProps> = ({
         setOnHover(true);
         playSoundOnHover();
       }}
-      onClick={() => {
-        playSoundOnClick();
-      }}
       onMouseDown={() => {
         setOnMouseDown(true);
+        playSoundOnClick();
       }}
       onMouseUp={() => {
         setOnMouseDown(false);
@@ -73,7 +71,7 @@ const PixelButton: FC<PixelButtonProps> = ({
       }}
       {...rest}
       style={{
-        filter: "drop-shadow(5px 10px 0px  rgba(0, 0, 0, 0.5))",
+        filter: "drop-shadow(1vh 2vh 0px  rgba(0, 0, 0, 0.5))",
       }}
     >
       <Grid

@@ -4,8 +4,13 @@ import NimGameTitle from "../../assets/NimGameTitle";
 import PixelButton from "../../components/PixelButton";
 import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
+import { FC } from "react";
 
-const MainMenu = () => {
+type MainMenuProps = {
+  setCurrentPage: (nextPage: string) => void;
+};
+
+const MainMenu: FC<MainMenuProps> = ({ setCurrentPage }) => {
   return (
     <Grid
       container
@@ -24,6 +29,9 @@ const MainMenu = () => {
         top={"13%"}
         position={"relative"}
         text="play"
+        onClick={() => {
+          setCurrentPage("GamePlay");
+        }}
       />
       <PixelButton
         color={"#99343b"}
