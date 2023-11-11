@@ -30,7 +30,7 @@ const NimGameTitle: FC<NimGameTitleProps> = ({
           display: "block",
           width: "100%",
           height: "100%",
-          filter: "drop-shadow(10px 20px 0px  rgba(0, 0, 0, 0.5))",
+          filter: "drop-shadow(2vh 4vh 0px  rgba(0, 0, 0, 0.5))",
         }}
       >
         <path stroke="#ff334e" d="M26 17h1" />

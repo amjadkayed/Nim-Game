@@ -1,6 +1,8 @@
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import "./index.css";
 import MainMenu from "./Pages/MainMenuPage/MainMenu";
+import GamePlay from "./Pages/GamePlayPage/GamePlay";
+import { useState } from "react";
 import Levels from "./Pages/MainMenuPage/Levels"
 
 const App = () => {
@@ -10,6 +12,7 @@ const App = () => {
     },
   });
 
+  const [currentPage, setCurrentPage] = useState("MainMenu");
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -22,6 +25,12 @@ const App = () => {
         height={"100%"}
         position={"relative"}
       >
+        {currentPage === "MainMenu" && (
+          <MainMenu setCurrentPage={setCurrentPage} />
+        )}
+        {currentPage === "GamePlay" && (
+          <GamePlay setCurrentPage={setCurrentPage} />
+        )}
         {/* <MainMenu /> */}
         <Levels/>
       </Grid>
