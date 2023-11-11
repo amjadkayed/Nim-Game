@@ -4,6 +4,7 @@ import NimGameTitle from "../../assets/NimGameTitle";
 import PixelButton from "../../components/PixelButton";
 import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
+// import Levels from "./Levels"
 
 const MainMenu = () => {
   return (
@@ -18,7 +19,15 @@ const MainMenu = () => {
       flexDirection={"column"}
       gap={"2%"}
     >
+      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
+      <Cloud2 height="20%" position={"absolute"} left={"15%"} />
+      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
+      <Cloud2 height="20%" position={"absolute"} left={"50%"} />
+      <Cloud2 height="20%" position={"absolute"} left={"50%"} />
+      <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} />
+
       <NimGameTitle top={"10%"} height="15%" position={"relative"} />
+
       <PixelButton
         color={"#298D72"}
         top={"13%"}
@@ -37,8 +46,8 @@ const MainMenu = () => {
         position={"relative"}
         text="settings"
       />
-      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
-      <Cloud2 height="20%" position={"absolute"} left={"15%"} />
+
+      
       <Moon height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
     </Grid>
   );

@@ -1,6 +1,7 @@
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import "./index.css";
 import MainMenu from "./Pages/MainMenuPage/MainMenu";
+import Levels from "./Pages/MainMenuPage/Levels"
 
 const App = () => {
   const theme = createTheme({
@@ -21,7 +22,8 @@ const App = () => {
         height={"100%"}
         position={"relative"}
       >
-        <MainMenu />
+        {/* <MainMenu /> */}
+        <Levels/>
       </Grid>
     </ThemeProvider>
   );

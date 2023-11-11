@@ -1,0 +1,36 @@
+@keyframes Moving {
+  0% {
+    transform: translateX(100vw); 
+  }
+  100% {
+    transform: translateX(-100vw); 
+  }
+}
+.cloud-animation {
+  animation: Moving 20s linear infinite;
+}
+
+.circularDivStyle  {
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 60%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+};
+.dial {
+  width: 60px;
+  height: 60px;
+  background-color: grey; /* Original color */
+  border-radius: 50%;
+  margin: 5px; /* optional: add margin for spacing */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add a transition for a smooth effect */
+}
+
+.selected {
+  background-color: black; /* Highlight color for the selected dial */
+}

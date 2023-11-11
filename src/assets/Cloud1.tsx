@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import "./MovingCloud.css"
 
 type Cloud1Props = {
   height?: string;
@@ -12,6 +13,34 @@ const Cloud1: FC<Cloud1Props> = ({
   width = "auto",
   ...rest
 }) => {
+  const initialPosition = parseInt(localStorage.getItem("cloudPosition") || "0", 10);
+  const [position, setPosition] = useState<number>(initialPosition || window.innerWidth);
+
+  const [direction, setDirection] = useState<number>(-1);
+
+  useEffect(() => {
+    const moveCloud = () => {
+      setPosition((prevPosition) => prevPosition + direction);
+    };
+
+    const interval = setInterval(moveCloud, 1000);
+
+    return () => clearInterval(interval);
+  }, [direction]);
+
+  useEffect(() => {
+    localStorage.setItem("cloudPosition", position.toString());
+  }, [position]);
+
+  useEffect(() => {
+    if (position <= -50) {
+      setDirection(1);
+    } else if (position >= window.innerWidth - 50) {
+      setDirection(-1);
+    }
+  }, [position]);
+
+
   return (
     <Grid
       item
@@ -19,6 +48,7 @@ const Cloud1: FC<Cloud1Props> = ({
       width={width}
       display={"block"}
       position={"absolute"}
+      className="cloud-animation"
       {...rest}
     >
       <svg
