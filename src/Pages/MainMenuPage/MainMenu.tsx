@@ -38,7 +38,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage }) => {
         position={"relative"}
         text="play"
         onClick={() => {
-          setCurrentPage("GamePlay");
+          setCurrentPage("Levels");
         }}
       />
       <PixelButton

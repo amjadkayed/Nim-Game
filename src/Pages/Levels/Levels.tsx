@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Grid } from "@mui/material";
-import Cloud1 from "../../assets/Cloud1";
-import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
 import Bar from "../../assets/Bar";
 import Flame from "../../assets/Flame";
@@ -11,13 +9,24 @@ import Point from "../../assets/Point";
 import PixelButton from "../../components/PixelButton";
 import Flamemu from "../../assets/Flamemu";
 import Flamehard from "../../assets/Flamehard";
-
-const Levels = () => {
+import Plus from "../../assets/Pluse";
+import Minus from "../../assets/Minus";
+type LevelsProps = {
+  setCurrentPage: (nextPage: string) => void;
+};
+const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+  const [counter, setCounter] = useState(4);
 
   const handleLevelClick = (level: string) => {
     setSelectedLevel(level);
   };
+  const updateCounter = (number: number) => {
+    setCounter((count) => {
+      return Math.max(4, Math.min(9, (count + number)));
+    });
+  };
+
   return (
     <Grid
       container
@@ -31,33 +40,46 @@ const Levels = () => {
       gap={"2%"}
     >
 
-      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
-      <Cloud2 height="20%" position={"absolute"} left={"15%"} />
-      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
-      <Cloud2 height="20%" position={"absolute"} left={"50%"} />
-      <Cloud2 height="20%" position={"absolute"} left={"50%"} />
-      <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} />
-      <Choose left={"35%"} top={"12%"} height="30%" position={"absolute"} />
-      <Bar left={"2%"} top={"25%"} height="17%" position={"relative"}  />
-      
+      <Choose left={"35%"} top={"6%"} height="30%" position={"absolute"} />
+      <Bar left={"2%"} top={"15%"} height="14%" position={"relative"}  />
+      {selectedLevel&&(
+        <Plus
+        left={"55%"}
+        top={"79%"}
+        height="17%"
+        position={"absolute"}
+        onClick={() => updateCounter(1)}
+        style={{ cursor: "pointer" }}
+        />
+      )}
+      {selectedLevel&&(
+        <Minus
+          left={"43.5%"}
+          top={"81%"} 
+          height="17%" 
+          position={"absolute"}  
+          onClick={() => updateCounter(-1)}
+          style={{ cursor: "pointer" }}
+          />
+      )}
+      {selectedLevel !== "medium"&&(
       <Point
-        left={"46.9%"}
-        top={"51%"}
-        height="18%"
+        left={"47%"}
+        top={"41.6%"}
+        height="16%"
         position={"absolute"}
         onClick={() => handleLevelClick("medium")}
         style={{
           cursor: "pointer",
-          display: selectedLevel === "medium" ? "none" : "block",
         }}
 
       />
-      
+      )}
       {selectedLevel !== "easy"&&(
       <Point
-        left={"31.2%"}
-        top={"51%"}
-        height="18%"
+        left={"34.5%"}
+        top={"42%"}
+        height="16%"
         position={"absolute"}
         onClick={() => handleLevelClick("easy")}
         style={{
@@ -65,60 +87,60 @@ const Levels = () => {
         }}
       />
       )}
+      {selectedLevel !== "hard"&&(
       <Point
-        left={"61.7%"}
-        top={"51%"}
-        height="18%"
+        left={"60%"}
+        top={"42%"}
+        height="16%"
         position={"absolute"}
         cursor={"pointer"}
         onClick={() => handleLevelClick("hard")}
         style={{
           cursor: "pointer",
-          display: selectedLevel === "hard" ? "none" : "block",
         }}
-
       />
+      )}
       
+      {selectedLevel === "easy"&&(
       <Flame 
-      left={"49%"} 
-      top={"30%"} 
+      left={"48%"} 
+      top={"20%"} 
       height="20%"
       position={"absolute"}
-      style={{
-        display: selectedLevel !== "easy" ? "none" : "block",
-      }}
       />
-      
+      )}
+
+      {selectedLevel === "medium"&&(
       <Flamemu 
       left={"48%"} 
-      top={"30%"} 
+      top={"20%"} 
       height="20%" 
       position={"absolute"} 
-      style={{
-        display: selectedLevel !== "medium" ? "none" : "block",
-      }}
       />
+      )}
       
-
+      {selectedLevel === "hard"&&(
       <Flamehard 
-      left={"47%"} 
-      top={"30%"}
+      left={"46%"} 
+      top={"20%"}
       height="20%"
       position={"absolute"}
-      style={{
-        display: selectedLevel !== "hard" ? "none" : "block",
-      }}
       />
-
-
-
+      )}
+      {counter&&selectedLevel&&(
+        <div style={{ position: "absolute", top: "75%", color: "#fff" ,userSelect: "none"}}>
+          <p style={{ fontSize: "40px" }}>{counter}</p>
+        </div>
+      )}
       <PixelButton
         color={"#298D72"}
         right={"-40%"}
         bottom={"-35%"}
-        // top={"13%"}
         position={"relative"}
         text="Start"
+        onClick={() => {
+          setCurrentPage("GamePlay");
+        }}
       />
       
       <PixelButton
@@ -127,9 +149,17 @@ const Levels = () => {
         bottom={"-19%"}
         position={"relative"}
         text="Back"
+        onClick={() => {
+          setCurrentPage("MainMenu");
+        }}
       />
+      {selectedLevel&&(
+      <div style={{ position: "absolute", top: "76%", color: "#fff" ,userSelect: "none", left:"25%"}}>
+        <p style={{ fontSize: "35px" }}>NO.rows:</p>
+      </div>
+      )}
       {selectedLevel && (
-        <div style={{ position: "absolute", top: "75%", color: "#fff" }}>
+        <div style={{ position: "absolute", top: "60%", color: "#fff" ,userSelect: "none" }}>
           <p style={{ fontSize: "40px" }}>{selectedLevel === "easy" && "Easy"}</p>
           <p style={{ fontSize: "40px" }}>{selectedLevel === "medium" && "Medium"}</p>
           <p style={{ fontSize: "40px" }}>{selectedLevel === "hard" && "Hard"}</p>

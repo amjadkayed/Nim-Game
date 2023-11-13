@@ -3,7 +3,7 @@ import "./index.css";
 import MainMenu from "./Pages/MainMenuPage/MainMenu";
 import GamePlay from "./Pages/GamePlayPage/GamePlay";
 import { useState } from "react";
-import Levels from "./Pages/MainMenuPage/Levels"
+import Levels from "./Pages/Levels/Levels"
 
 const App = () => {
   const theme = createTheme({
@@ -28,11 +28,12 @@ const App = () => {
         {currentPage === "MainMenu" && (
           <MainMenu setCurrentPage={setCurrentPage} />
         )}
+        {currentPage === "Levels" && (
+          <Levels setCurrentPage={setCurrentPage} />
+        )}
         {currentPage === "GamePlay" && (
           <GamePlay setCurrentPage={setCurrentPage} />
         )}
-        {/* <MainMenu /> */}
-        <Levels/>
       </Grid>
     </ThemeProvider>
   );

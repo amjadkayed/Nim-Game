@@ -36,7 +36,6 @@ const Point: FC<PointProps> = ({
   ...rest
 }) => {
   const [onHover, setOnHover] = useState(false);
-  const [onMouseDown, setOnMouseDown] = useState(false);
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
   const [playSoundOnClick] = useSound(onButtonClickSound);
   return (
@@ -54,15 +53,6 @@ const Point: FC<PointProps> = ({
       onClick={() => {
         playSoundOnClick();
       }}
-      onMouseDown={() => {
-        setOnMouseDown(true);
-      }}
-      onMouseUp={() => {
-        setOnMouseDown(false);
-      }}
-      onMouseOut={() => {
-        setOnMouseDown(false);
-      }}
       onMouseLeave={() => {
         setOnHover(false);
       }}
@@ -79,7 +69,7 @@ const Point: FC<PointProps> = ({
       >
       <path stroke="#000000" d="M44 25h3M43 26h1M47 26h1M42 27h1M48 27h1M42 28h1M48 28h1M42 29h1M48 29h1M43 30h1M47 30h1M44 31h3"
        /> 
-      <path stroke={onHover ? "#214e75" : newShade("#214e75", 50)}
+      <path stroke={!onHover ? (!onclick ? "#214e75":"fff5a6") : newShade("#214e75", 50)}
        d="M44 26h3M43 27h5M43 28h5M43 29h5M44 30h3"/>
       </svg>
     </Grid>
