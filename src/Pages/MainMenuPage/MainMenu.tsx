@@ -73,6 +73,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
       {game.version === "v1" && (
         <>
           <V1Background width="110%" position={"absolute"} bottom={"-25%"} />
+          <Moon  version={game.version} height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
         </>
       )}
       {game.version === "v2" && (
@@ -84,7 +85,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
             bottom={"20%"}
           />
           <Cloud2 height="20%" position={"absolute"} left={"15%"} />
-          <Moon height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
+          <Moon  version={game.version} height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
         </>
       )}
     </Grid>

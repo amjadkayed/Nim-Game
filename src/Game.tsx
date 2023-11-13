@@ -4,6 +4,7 @@ import MainMenu from "./Pages/MainMenuPage/MainMenu";
 import GamePlay from "./Pages/GamePlayPage/GamePlay";
 import { useState } from "react";
 import ChooseVersion from "./Pages/ChooseVersionPage/ChooseVersion";
+import Levels from "./Pages/Levels/Levels";
 
 export type GameType = {
   version: string;
@@ -77,6 +78,13 @@ const App = () => {
             setCurrentPage={setCurrentPage}
             setGame={setGame}
             game={game}
+          />
+        )}
+        {currentPage === "Levels" && (
+          <Levels 
+          setCurrentPage={setCurrentPage} 
+          setGame={setGame}
+          game={game}
           />
         )}
         {currentPage === "GamePlay" && (

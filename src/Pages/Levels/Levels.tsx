@@ -11,10 +11,13 @@ import Flamemu from "../../assets/Flamemu";
 import Flamehard from "../../assets/Flamehard";
 import Plus from "../../assets/Pluse";
 import Minus from "../../assets/Minus";
+import { GameType } from "../../Game";
 type LevelsProps = {
   setCurrentPage: (nextPage: string) => void;
+  game: GameType;
+  setGame: (game: GameType) => void;
 };
-const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
+const Levels :FC<LevelsProps> = ({ setCurrentPage, setGame, game }) => {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [counter, setCounter] = useState(4);
 
@@ -40,8 +43,8 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
       gap={"2%"}
     >
 
-      <Choose left={"35%"} top={"6%"} height="30%" position={"absolute"} />
-      <Bar left={"2%"} top={"15%"} height="14%" position={"relative"}  />
+      <Choose  version={game.version} left={"35%"} top={"6%"} height="30%" position={"absolute"} />
+      <Bar version={game.version} left={"2%"} top={"15%"} height="14%" position={"relative"}  />
       {selectedLevel&&(
         <Plus
         left={"55%"}
@@ -49,6 +52,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
         height="17%"
         position={"absolute"}
         onClick={() => updateCounter(1)}
+        version={game.version}
         style={{ cursor: "pointer" }}
         />
       )}
@@ -59,6 +63,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
           height="17%" 
           position={"absolute"}  
           onClick={() => updateCounter(-1)}
+          version={game.version}
           style={{ cursor: "pointer" }}
           />
       )}
@@ -69,6 +74,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
         height="16%"
         position={"absolute"}
         onClick={() => handleLevelClick("medium")}
+        version={game.version}
         style={{
           cursor: "pointer",
         }}
@@ -82,6 +88,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
         height="16%"
         position={"absolute"}
         onClick={() => handleLevelClick("easy")}
+        version={game.version}
         style={{
           cursor: "pointer",
         }}
@@ -95,6 +102,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
         position={"absolute"}
         cursor={"pointer"}
         onClick={() => handleLevelClick("hard")}
+        version={game.version}
         style={{
           cursor: "pointer",
         }}
@@ -128,8 +136,9 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
       />
       )}
       {counter&&selectedLevel&&(
-        <div style={{ position: "absolute", top: "75%", color: "#fff" ,userSelect: "none"}}>
-          <p style={{ fontSize: "40px" }}>{counter}</p>
+        <div style={{ position: "absolute", top: "75%" ,userSelect: "none"}}>
+          <p style={{ fontSize: "40px" , color: "#000"}}>{game.version === "v1"&&counter}</p>
+          <p style={{ fontSize: "40px" , color: "#fff"}}>{game.version === "v2"&&counter}</p>
         </div>
       )}
       <PixelButton
@@ -154,18 +163,22 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage }) => {
         }}
       />
       {selectedLevel&&(
-      <div style={{ position: "absolute", top: "76%", color: "#fff" ,userSelect: "none", left:"25%"}}>
-        <p style={{ fontSize: "35px" }}>NO.rows:</p>
+      <div style={{ position: "absolute", top: "76%" ,userSelect: "none", left:"25%"}}>
+        <p style={{ fontSize: "35px" , color: "#000"}}>{game.version === "v1" && "NO.rows:"}</p>
+        <p style={{ fontSize: "35px" , color: "#fff"}}>{game.version === "v2" && "NO.rows:"}</p>
       </div>
       )}
       {selectedLevel && (
-        <div style={{ position: "absolute", top: "60%", color: "#fff" ,userSelect: "none" }}>
-          <p style={{ fontSize: "40px" }}>{selectedLevel === "easy" && "Easy"}</p>
-          <p style={{ fontSize: "40px" }}>{selectedLevel === "medium" && "Medium"}</p>
-          <p style={{ fontSize: "40px" }}>{selectedLevel === "hard" && "Hard"}</p>
+        <div style={{ position: "absolute", top: "60%" ,userSelect: "none" }}>
+          <p style={{ fontSize: "40px", color: "#000" }}>{selectedLevel === "easy"&&game.version === "v1" && "Easy"}</p>
+          <p style={{ fontSize: "40px", color: "#000" }}>{selectedLevel === "medium"&&game.version === "v1" && "Medium"}</p>
+          <p style={{ fontSize: "40px", color: "#000" }}>{selectedLevel === "hard"&&game.version === "v1" && "Hard"}</p>
+          <p style={{ fontSize: "40px", color: "#fff" }}>{selectedLevel === "easy"&&game.version === "v2" && "Easy"}</p>
+          <p style={{ fontSize: "40px", color: "#fff" }}>{selectedLevel === "medium"&&game.version === "v2" && "Medium"}</p>
+          <p style={{ fontSize: "40px", color: "#fff" }}>{selectedLevel === "hard"&&game.version === "v2" && "Hard"}</p>
         </div>
       )}
-      <Moon height="45%" position={"absolute"} right={"-5%"} top={"-15%"} />
+      <Moon version={game.version} height="45%" position={"absolute"} right={"-5%"} top={"-15%"} />
     </Grid>
   );
 };
