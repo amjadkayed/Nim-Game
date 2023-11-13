@@ -44,7 +44,7 @@ const PixelButton: FC<PixelButtonProps> = ({
   const [onMouseDown, setOnMouseDown] = useState(false);
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
   const [playSoundOnClick] = useSound(onButtonClickSound);
-  
+
   return (
     <Grid
       item

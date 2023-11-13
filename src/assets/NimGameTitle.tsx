@@ -4,12 +4,14 @@ import { FC } from "react";
 type NimGameTitleProps = {
   height?: string;
   width?: string;
+  version: string;
   [key: string]: unknown;
 };
 
 const NimGameTitle: FC<NimGameTitleProps> = ({
   height = "auto",
   width = "auto",
+  version,
   ...rest
 }) => {
   return (
@@ -22,33 +24,62 @@ const NimGameTitle: FC<NimGameTitleProps> = ({
       position={"absolute"}
       {...rest}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        shape-rendering="crispEdges"
-        viewBox="13.5 16.5 75 11"
-        style={{
-          display: "block",
-          width: "100%",
-          height: "100%",
-          filter: "drop-shadow(2vh 4vh 0px  rgba(0, 0, 0, 0.5))",
-        }}
-      >
-        <path stroke="#ff334e" d="M26 17h1" />
-        <path stroke="#a30016" d="M27 17h1" />
-        <path
-          stroke="#ffffff"
-          d="M14 18h2M20 18h2M32 18h2M40 18h2M50 18h4M60 18h4M68 18h2M76 18h2M80 18h8M14 19h2M20 19h2M32 19h2M40 19h2M50 19h4M60 19h4M68 19h2M76 19h2M80 19h8M14 20h4M20 20h2M32 20h4M38 20h4M48 20h2M58 20h2M64 20h2M68 20h4M74 20h4M80 20h2M14 21h4M20 21h2M32 21h4M38 21h4M48 21h2M58 21h2M64 21h2M68 21h4M74 21h4M80 21h2M14 22h2M18 22h4M32 22h2M36 22h2M40 22h2M48 22h2M52 22h4M58 22h8M68 22h2M72 22h2M76 22h2M80 22h6M14 23h2M18 23h4M32 23h2M36 23h2M40 23h2M48 23h2M52 23h4M58 23h8M68 23h2M72 23h2M76 23h2M80 23h6M14 24h2M20 24h2M32 24h2M40 24h2M48 24h2M54 24h2M58 24h2M64 24h2M68 24h2M76 24h2M80 24h2M14 25h2M20 25h2M32 25h2M40 25h2M48 25h2M54 25h2M58 25h2M64 25h2M68 25h2M76 25h2M80 25h2M14 26h2M20 26h2M32 26h2M40 26h2M50 26h4M58 26h2M64 26h2M68 26h2M76 26h2M80 26h8M14 27h2M20 27h2M32 27h2M40 27h2M50 27h4M58 27h2M64 27h2M68 27h2M76 27h2M80 27h8"
-        />
-        <path stroke="#9b3341" d="M26 18h1" />
-        <path stroke="#820012" d="M27 18h1" />
-        <path stroke="#ae9571" d="M26 19h1M26 20h1" />
-        <path stroke="#624e32" d="M27 19h1M27 20h1M27 21h1M26 25h1" />
-        <path stroke="#9a7b4d" d="M26 21h1M26 22h1" />
-        <path stroke="#4e3e28" d="M27 22h1M27 26h1" />
-        <path stroke="#7b623e" d="M26 23h1M26 24h1" />
-        <path stroke="#3e3220" d="M27 23h1M27 24h1M27 25h1M26 26h1M26 27h1" />
-        <path stroke="#282015" d="M27 27h1" />
-      </svg>
+      {version === "v1" ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          shape-rendering="crispEdges"
+          viewBox="12.5 11.5 77 17"
+          style={{
+            display: "block",
+            width: "100%",
+            height: "100%",
+            filter: "drop-shadow(2vh 4vh 0px  rgba(0, 0, 0, 0.5))",
+          }}
+        >
+          <path
+            stroke="#000000"
+            d="M26 12h2M25 13h1M28 13h1M24 14h1M29 14h1M24 15h1M29 15h1M25 16h4M14 17h2M20 17h2M26 17h2M32 17h2M40 17h2M50 17h4M59 17h6M67 17h4M75 17h3M80 17h8M13 18h1M16 18h1M19 18h1M22 18h1M25 18h1M28 18h1M31 18h1M34 18h1M39 18h1M42 18h1M49 18h1M54 18h1M59 18h1M64 18h1M67 18h1M70 18h1M75 18h1M78 18h2M88 18h1M13 19h1M16 19h2M19 19h1M22 19h1M25 19h1M28 19h1M31 19h1M34 19h2M38 19h2M42 19h1M47 19h3M54 19h1M57 19h3M64 19h4M70 19h6M78 19h2M88 19h1M13 20h1M18 20h2M22 20h1M25 20h1M28 20h1M31 20h1M36 20h2M42 20h1M47 20h1M50 20h4M57 20h1M60 20h4M66 20h2M72 20h2M78 20h2M82 20h6M13 21h1M18 21h2M22 21h1M25 21h1M28 21h1M31 21h1M36 21h2M42 21h1M47 21h1M50 21h6M57 21h1M60 21h4M66 21h2M72 21h2M78 21h2M82 21h5M13 22h1M16 22h2M22 22h1M25 22h1M28 22h1M31 22h1M34 22h2M38 22h2M42 22h1M47 22h1M50 22h2M56 22h2M66 22h2M70 22h2M74 22h2M78 22h2M86 22h1M13 23h1M16 23h2M22 23h1M25 23h1M28 23h1M31 23h1M34 23h2M38 23h2M42 23h1M47 23h1M50 23h2M56 23h2M66 23h2M70 23h2M74 23h2M78 23h2M86 23h1M13 24h1M16 24h1M18 24h2M22 24h1M25 24h1M28 24h1M31 24h1M34 24h1M36 24h2M39 24h1M42 24h1M47 24h1M50 24h4M56 24h2M60 24h4M66 24h2M70 24h1M72 24h2M75 24h1M78 24h2M82 24h5M13 25h1M16 25h1M19 25h1M22 25h1M25 25h1M28 25h1M31 25h1M34 25h1M39 25h1M42 25h1M47 25h1M50 25h4M56 25h2M60 25h1M63 25h1M66 25h2M70 25h1M75 25h1M78 25h2M82 25h6M13 26h1M16 26h1M19 26h1M22 26h1M25 26h1M28 26h1M31 26h1M34 26h1M39 26h1M42 26h1M48 26h2M54 26h2M57 26h1M60 26h1M63 26h1M66 26h2M70 26h1M75 26h1M78 26h2M88 26h1M13 27h1M16 27h1M19 27h1M22 27h1M25 27h1M28 27h1M31 27h1M34 27h1M39 27h1M42 27h1M49 27h1M54 27h1M57 27h1M60 27h1M63 27h1M66 27h2M70 27h1M75 27h1M78 27h2M88 27h1M14 28h2M20 28h2M26 28h2M32 28h2M40 28h2M50 28h4M58 28h2M64 28h2M68 28h2M76 28h2M80 28h9"
+          />
+          <path stroke="#a8a8a8" d="M26 13h2M26 14h1" />
+          <path stroke="#969696" d="M25 14h1" />
+          <path stroke="#5b5b5b" d="M27 14h1M26 15h1M28 15h1" />
+          <path stroke="#242424" d="M28 14h1" />
+          <path stroke="#828282" d="M25 15h1" />
+          <path stroke="#1f1f1f" d="M27 15h1" />
+          <path
+            stroke="#ffffff"
+            d="M14 18h2M20 18h2M26 18h2M32 18h2M40 18h2M50 18h4M60 18h4M68 18h2M76 18h2M80 18h8M14 19h2M20 19h2M26 19h2M32 19h2M40 19h2M50 19h4M60 19h4M68 19h2M76 19h2M80 19h8M14 20h4M20 20h2M26 20h2M32 20h4M38 20h4M48 20h2M58 20h2M64 20h2M68 20h4M74 20h4M80 20h2M14 21h4M20 21h2M26 21h2M32 21h4M38 21h4M48 21h2M58 21h2M64 21h2M68 21h4M74 21h4M80 21h2M14 22h2M18 22h4M26 22h2M32 22h2M36 22h2M40 22h2M48 22h2M52 22h4M58 22h8M68 22h2M72 22h2M76 22h2M80 22h6M14 23h2M18 23h4M26 23h2M32 23h2M36 23h2M40 23h2M48 23h2M52 23h4M58 23h8M68 23h2M72 23h2M76 23h2M80 23h6M14 24h2M20 24h2M26 24h2M32 24h2M40 24h2M48 24h2M54 24h2M58 24h2M64 24h2M68 24h2M76 24h2M80 24h2M14 25h2M20 25h2M26 25h2M32 25h2M40 25h2M48 25h2M54 25h2M58 25h2M64 25h2M68 25h2M76 25h2M80 25h2M14 26h2M20 26h2M26 26h2M32 26h2M40 26h2M50 26h4M58 26h2M64 26h2M68 26h2M76 26h2M80 26h8M14 27h2M20 27h2M26 27h2M32 27h2M40 27h2M50 27h4M58 27h2M64 27h2M68 27h2M76 27h2M80 27h8"
+          />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          shape-rendering="crispEdges"
+          viewBox="13.5 16.5 75 11"
+          style={{
+            display: "block",
+            width: "100%",
+            height: "100%",
+            filter: "drop-shadow(2vh 4vh 0px  rgba(0, 0, 0, 0.5))",
+          }}
+        >
+          <path stroke="#ff334e" d="M26 17h1" />
+          <path stroke="#a30016" d="M27 17h1" />
+          <path
+            stroke="#ffffff"
+            d="M14 18h2M20 18h2M32 18h2M40 18h2M50 18h4M60 18h4M68 18h2M76 18h2M80 18h8M14 19h2M20 19h2M32 19h2M40 19h2M50 19h4M60 19h4M68 19h2M76 19h2M80 19h8M14 20h4M20 20h2M32 20h4M38 20h4M48 20h2M58 20h2M64 20h2M68 20h4M74 20h4M80 20h2M14 21h4M20 21h2M32 21h4M38 21h4M48 21h2M58 21h2M64 21h2M68 21h4M74 21h4M80 21h2M14 22h2M18 22h4M32 22h2M36 22h2M40 22h2M48 22h2M52 22h4M58 22h8M68 22h2M72 22h2M76 22h2M80 22h6M14 23h2M18 23h4M32 23h2M36 23h2M40 23h2M48 23h2M52 23h4M58 23h8M68 23h2M72 23h2M76 23h2M80 23h6M14 24h2M20 24h2M32 24h2M40 24h2M48 24h2M54 24h2M58 24h2M64 24h2M68 24h2M76 24h2M80 24h2M14 25h2M20 25h2M32 25h2M40 25h2M48 25h2M54 25h2M58 25h2M64 25h2M68 25h2M76 25h2M80 25h2M14 26h2M20 26h2M32 26h2M40 26h2M50 26h4M58 26h2M64 26h2M68 26h2M76 26h2M80 26h8M14 27h2M20 27h2M32 27h2M40 27h2M50 27h4M58 27h2M64 27h2M68 27h2M76 27h2M80 27h8"
+          />
+          <path stroke="#9b3341" d="M26 18h1" />
+          <path stroke="#820012" d="M27 18h1" />
+          <path stroke="#ae9571" d="M26 19h1M26 20h1" />
+          <path stroke="#624e32" d="M27 19h1M27 20h1M27 21h1M26 25h1" />
+          <path stroke="#9a7b4d" d="M26 21h1M26 22h1" />
+          <path stroke="#4e3e28" d="M27 22h1M27 26h1" />
+          <path stroke="#7b623e" d="M26 23h1M26 24h1" />
+          <path stroke="#3e3220" d="M27 23h1M27 24h1M27 25h1M26 26h1M26 27h1" />
+          <path stroke="#282015" d="M27 27h1" />
+        </svg>
+      )}
     </Grid>
   );
 };
