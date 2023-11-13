@@ -4,13 +4,25 @@ import NimGameTitle from "../../assets/NimGameTitle";
 import PixelButton from "../../components/PixelButton";
 import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { GameType } from "../../Game";
+import V1Background from "../../assets/V1Background";
 
 type MainMenuProps = {
   setCurrentPage: (nextPage: string) => void;
+  game: GameType;
+  setGame: (game: GameType) => void;
 };
 
-const MainMenu: FC<MainMenuProps> = ({ setCurrentPage }) => {
+const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
+  useEffect(() => {
+    if (game.version === "v1") {
+      document.body.style.backgroundColor = "#27F2DB";
+    } else if (game.version === "v2") {
+      document.body.style.backgroundColor = "#1b0c3b";
+    }
+  }, []);
+
   return (
     <Grid
       container
@@ -30,7 +42,12 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage }) => {
       <Cloud2 height="20%" position={"absolute"} left={"50%"} />
       <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} />
 
-      <NimGameTitle top={"10%"} height="15%" position={"relative"} />
+      <NimGameTitle
+        top={game.version === "v1" ? "10%" : "10%"}
+        height={game.version === "v1" ? "20%" : "15%"}
+        position={"relative"}
+        version={game.version}
+      />
 
       <PixelButton
         color={"#298D72"}
@@ -53,9 +70,23 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage }) => {
         position={"relative"}
         text="settings"
       />
-
-      
-      <Moon height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
+      {game.version === "v1" && (
+        <>
+          <V1Background width="110%" position={"absolute"} bottom={"-25%"} />
+        </>
+      )}
+      {game.version === "v2" && (
+        <>
+          <Cloud1
+            height="20%"
+            position={"absolute"}
+            right={"10%"}
+            bottom={"20%"}
+          />
+          <Cloud2 height="20%" position={"absolute"} left={"15%"} />
+          <Moon height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
+        </>
+      )}
     </Grid>
   );
 };

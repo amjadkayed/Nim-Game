@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import { FC } from "react";
 
-type MoonProps = {
+type Cloud1Props = {
   height?: string;
   width?: string;
   [key: string]: unknown;
 };
 
-const Moon: FC<MoonProps> = ({
+const Cloud1: FC<Cloud1Props> = ({
   height = "auto",
   width = "auto",
   ...rest
@@ -53,4 +53,4 @@ const Moon: FC<MoonProps> = ({
   );
 };
 
-export default Moon;
+export default Cloud1;

@@ -2,12 +2,15 @@ import { FC, useEffect, useState } from "react";
 import PixelButton from "../../components/PixelButton";
 import Matchstick from "../../assets/Matchstick";
 import { Grid } from "@mui/material";
+import { GameType } from "../../Game";
 
 type GamePlayProps = {
   setCurrentPage: (nextPage: string) => void;
+  game: GameType;
+  setGame: (game: GameType) => void;
 };
 
-const GamePlay: FC<GamePlayProps> = ({ setCurrentPage }) => {
+const GamePlay: FC<GamePlayProps> = ({ setCurrentPage, setGame, game }) => {
   const [numberOffRows, setNumberOffRows] = useState(4);
   const [rows, setRows] = useState<any>([]);
 
@@ -66,7 +69,7 @@ const GamePlay: FC<GamePlayProps> = ({ setCurrentPage }) => {
         height="13%"
         left={"5%"}
         top={"30%"}
-        text="increase"
+        text="+"
         color="#0000ff"
         onClick={() => {
           setNumberOffRows((prev: any) => Math.min(prev + 1, 9));

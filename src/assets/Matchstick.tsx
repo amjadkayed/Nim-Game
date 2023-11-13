@@ -21,7 +21,7 @@ const Matchstick: FC<MatchstickProps> = ({
     useSound(onMatchstickBurn);
   const [playMatchstickOffSound, { stop: stopOffSound }] =
     useSound(onMatchstickOff);
-    
+
   return (
     <Grid
       item
@@ -97,8 +97,8 @@ const Matchstick: FC<MatchstickProps> = ({
           viewBox="4.5 2.5 5 13"
           style={{
             display: "block",
-            width: "90%",
-            height: "90%",
+            width: "100%",
+            height: "10,0%",
           }}
         >
           <path
@@ -124,8 +124,8 @@ const Matchstick: FC<MatchstickProps> = ({
           viewBox="5.5 3.5 3 11"
           style={{
             display: "block",
-            width: "60%",
-            height: "60%",
+            width: "100%",
+            height: "100%",
           }}
         >
           <path stroke="#ff334e" d="M6 4h1" />
