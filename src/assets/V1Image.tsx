@@ -28,10 +28,11 @@ const V1Image: FC<V1ImageProps> = ({
       position={"absolute"}
       onMouseEnter={() => {
         setOnHover(true);
+        playSoundOnHover();
       }}
       onMouseLeave={() => {
         setOnHover(false);
-        playSoundOnHover();
+        
       }}
       onMouseDown={() => {
         playSoundOnClick();
