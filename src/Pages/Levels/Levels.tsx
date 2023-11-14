@@ -12,6 +12,7 @@ import Flamehard from "../../assets/Flamehard";
 import Plus from "../../assets/Pluse";
 import Minus from "../../assets/Minus";
 import { GameType } from "../../Game";
+import Stones from "../../assets/Stones";
 type LevelsProps = {
   setCurrentPage: (nextPage: string) => void;
   game: GameType;
@@ -109,7 +110,7 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage, setGame, game }) => {
       />
       )}
       
-      {selectedLevel === "easy"&&(
+      {(selectedLevel === "easy"&&game.version=="v2")&&(
       <Flame 
       left={"48%"} 
       top={"20%"} 
@@ -117,8 +118,18 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage, setGame, game }) => {
       position={"absolute"}
       />
       )}
+      {(selectedLevel === "easy"&&game.version=="v1")&&(
+      <Stones 
+      left={"47%"} 
+      top={"22%"} 
+      height="20%"
+      defecult="easy"
+      position={"absolute"}
+      />
+      )}
+      
 
-      {selectedLevel === "medium"&&(
+      {(selectedLevel === "medium"&&game.version=="v2")&&(
       <Flamemu 
       left={"48%"} 
       top={"20%"} 
@@ -126,8 +137,20 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage, setGame, game }) => {
       position={"absolute"} 
       />
       )}
-      
-      {selectedLevel === "hard"&&(
+
+      {(selectedLevel === "medium"&&game.version=="v1")&&(
+      <Stones 
+      left={"47%"} 
+      top={"22%"} 
+      height="20%"
+      defecult="medium"
+      position={"absolute"}
+      />
+      )}
+
+
+
+      {(selectedLevel === "hard"&&game.version=="v2")&&(
       <Flamehard 
       left={"46%"} 
       top={"20%"}
@@ -135,6 +158,18 @@ const Levels :FC<LevelsProps> = ({ setCurrentPage, setGame, game }) => {
       position={"absolute"}
       />
       )}
+
+      {(selectedLevel === "hard"&&game.version=="v1")&&(
+      <Stones 
+      left={"47%"} 
+      top={"24%"} 
+      height="20%"
+      defecult="hard"
+      position={"absolute"}
+      />
+      )}
+
+
       {counter&&selectedLevel&&(
         <div style={{ position: "absolute", top: "75%" ,userSelect: "none"}}>
           <p style={{ fontSize: "40px" , color: "#000"}}>{game.version === "v1"&&counter}</p>
