@@ -4,11 +4,12 @@ import NimGameTitle from "../../assets/NimGameTitle";
 import PixelButton from "../../components/PixelButton";
 import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
-import { FC, useEffect, version } from "react";
+import { FC, useEffect, useState, version } from "react";
 import { GameType } from "../../Game";
 import V1Background from "../../assets/V1Background";
 import Sun from "../../assets/sun";
 import Cloud3 from "../../assets/Cloud3";
+import HelpModel from "../../components/Helpmodel";
 
 type MainMenuProps = {
   setCurrentPage: (nextPage: string) => void;
@@ -17,6 +18,8 @@ type MainMenuProps = {
 };
 
 const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <Grid
       container
@@ -67,7 +70,11 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
         top={"13%"}
         position={"relative"}
         text="help"
+        onClick={() => {
+          setModalOpen(true);
+        }}
       />
+      {modalOpen && <HelpModel setOpenModal={setModalOpen} version={game.version} />}
       <PixelButton
         color={"#9E9E9E"}
         top={"13%"}
