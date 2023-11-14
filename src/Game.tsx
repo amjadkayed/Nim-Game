@@ -26,7 +26,8 @@ export type GameType = {
   };
 };
 
-const App = () => {
+const Game = () => {
+
   const theme = createTheme({
     typography: {
       fontFamily: '"Public Pixel", sans-serif;',
@@ -34,6 +35,7 @@ const App = () => {
   });
 
   const [currentPage, setCurrentPage] = useState("ChooseVersion");
+
   const [game, setGame] = useState<GameType>({
     version: null,
     gameConfig: {
@@ -111,4 +113,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Game;

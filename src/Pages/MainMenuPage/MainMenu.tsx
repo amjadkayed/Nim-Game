@@ -37,7 +37,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
       <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} /> */}
 
       <NimGameTitle
-        top={game.version === "v1" ? "10%" : "10%"}
+        top={ "10%"}
         height={game.version === "v1" ? "20%" : "15%"}
         position={"relative"}
         version={game.version}
@@ -66,7 +66,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
         color={"#99343b"}
         top={"13%"}
         position={"relative"}
-        text="help"
+        text="rules"
       />
       <PixelButton
         color={"#9E9E9E"}

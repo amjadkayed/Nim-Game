@@ -16,9 +16,11 @@ const V1Image: FC<V1ImageProps> = ({
   width = "auto",
   ...rest
 }) => {
+  
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
   const [playSoundOnClick] = useSound(onButtonClickSound);
   const [onHover, setOnHover] = useState(false);
+
   return (
     <Grid
       item

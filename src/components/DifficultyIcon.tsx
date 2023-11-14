@@ -26,7 +26,162 @@ const DifficultyIcon: FC<DifficultyIconProps> = ({
         zIndex={"20"}
         position={"absolute"}
         {...rest}
-      ></Grid>
+      >
+        {difficulty === "easy" && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            shape-rendering="crispEdges"
+            viewBox="22.5 30.5 23 14"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <path
+              stroke="#000000"
+              d="M28 31h12M40 32h1M27 33h1M40 33h1M27 34h1M40 34h1M25 35h1M42 35h1M25 36h1M42 36h1M25 37h1M42 37h1M25 38h1M42 38h1M25 39h1M42 39h1M24 40h2M42 40h2M23 41h1M44 41h1M23 42h1M44 42h1M23 43h1M44 43h1M24 44h20"
+            ></path>
+            <path
+              stroke="#686868"
+              d="M28 32h12M28 33h12M28 34h12M26 35h2M40 35h2M26 36h2M40 36h2M26 37h2M40 37h2M24 41h2M42 41h2M24 42h2M42 42h2M24 43h2M42 43h2"
+            ></path>
+            <path
+              stroke="#828282"
+              d="M28 35h12M28 36h12M28 37h12M26 38h16M26 39h16M26 40h16"
+            ></path>
+            <path stroke="#9b9b9b" d="M26 41h16M26 42h16M26 43h16"></path>
+          </svg>
+        )}
+        {difficulty === "medium" && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            shape-rendering="crispEdges"
+            viewBox="20.5 28.5 28 17"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <path
+              stroke="#000000"
+              d="M28 29h14M26 30h1M42 30h1M26 31h1M30 31h1M42 31h1M26 32h1M31 32h2M35 32h1M41 32h2M25 33h2M32 33h1M34 33h2M38 33h3M42 33h2M24 34h2M32 34h3M36 34h3M44 34h1M24 35h1M26 35h4M32 35h2M36 35h1M44 35h1M24 36h1M31 36h1M44 36h1M24 37h1M30 37h2M44 37h1M24 38h1M26 38h3M32 38h1M44 38h1M24 39h2M32 39h1M40 39h1M44 39h1M22 40h4M31 40h2M40 40h1M44 40h3M21 41h1M24 41h1M31 41h1M41 41h2M47 41h1M21 42h1M23 42h2M31 42h1M42 42h2M47 42h1M21 43h3M31 43h1M43 43h2M47 43h1M22 44h1M30 44h2M44 44h2M47 44h1M23 45h24"
+            ></path>
+            <path
+              stroke="#242424"
+              d="M27 30h1M27 31h1M27 32h1M27 33h1M31 33h1M32 43h1M32 44h1"
+            ></path>
+            <path
+              stroke="#333333"
+              d="M28 30h2M33 30h3M28 31h2M33 31h3M41 33h1"
+            ></path>
+            <path
+              stroke="#494949"
+              d="M30 30h3M41 30h1M31 31h2M41 31h1M33 32h2M39 32h2M33 33h1M37 33h1M26 34h1M25 35h1M44 41h1M44 42h1M24 43h1M45 43h2M23 44h2M46 44h1"
+            ></path>
+            <path
+              stroke="#686868"
+              d="M36 30h5M36 31h5M36 32h3M36 33h1M42 34h2M42 35h2M25 36h2M42 36h2M25 37h2M42 37h2M22 41h2M45 41h2M22 42h1M45 42h2"
+            ></path>
+            <path stroke="#191919" d="M28 32h3M28 33h3"></path>
+            <path
+              stroke="#5b5b5b"
+              d="M27 34h5M35 34h1M41 34h1M30 35h2M41 35h1M35 36h2M36 37h1M35 38h3M41 38h1M31 39h1M34 39h1M41 39h2M34 40h1M41 40h2"
+            ></path>
+            <path
+              stroke="#404040"
+              d="M39 34h2M35 35h1M38 35h3M37 36h1M34 37h1M37 37h1M30 38h1M26 39h1M33 39h1M26 40h1M33 40h1"
+            ></path>
+            <path
+              stroke="#828282"
+              d="M34 35h1M37 35h1M27 36h4M32 36h3M39 36h3M27 37h3M32 37h2M35 37h1M39 37h3M25 38h1M29 38h1M38 38h3M42 38h2M35 39h5M43 39h1M35 40h5M43 40h1"
+            ></path>
+            <path
+              stroke="#2d2d2d"
+              d="M38 36h1M38 37h1M31 38h1M34 38h1M27 39h4M27 40h4"
+            ></path>
+            <path stroke="#1f1f1f" d="M33 38h1"></path>
+            <path
+              stroke="#4b4b4b"
+              d="M25 41h1M27 41h1M34 41h1M39 41h2M25 42h1M27 42h1M34 42h1M39 42h3M26 43h1M33 43h1M26 44h1M33 44h1"
+            ></path>
+            <path
+              stroke="#343434"
+              d="M26 41h1M33 41h1M26 42h1M33 42h1M41 43h2M41 44h2"
+            ></path>
+            <path
+              stroke="#9b9b9b"
+              d="M28 41h2M32 41h1M37 41h1M28 42h3M37 42h1M27 43h4M35 43h1M37 43h4M27 44h3M35 44h1M37 44h4"
+            ></path>
+            <path
+              stroke="#6c6c6c"
+              d="M30 41h1M35 41h2M38 41h1M43 41h1M32 42h1M35 42h2M38 42h1M25 43h1M34 43h1M36 43h1M25 44h1M34 44h1M36 44h1M43 44h1"
+            ></path>
+          </svg>
+        )}
+        {difficulty === "hard" && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            shape-rendering="crispEdges"
+            viewBox="14.5 28.5 40 20"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <path
+              stroke="#000000"
+              d="M30 29h9M37 30h2M30 31h1M38 31h2M26 32h2M31 32h2M35 32h1M40 32h2M25 33h4M32 33h1M34 33h2M38 33h4M24 34h2M28 34h1M32 34h3M36 34h3M41 34h4M24 35h1M26 35h4M32 35h2M36 35h2M44 35h2M24 36h2M29 36h1M31 36h1M37 36h1M43 36h2M19 37h3M25 37h1M29 37h3M37 37h1M41 37h2M18 38h1M21 38h1M25 38h4M30 38h1M32 38h1M37 38h1M41 38h1M18 39h4M25 39h1M30 39h1M32 39h1M37 39h1M40 39h4M22 40h4M29 40h1M31 40h2M37 40h2M40 40h1M44 40h3M21 41h1M24 41h1M29 41h1M31 41h1M38 41h1M41 41h2M47 41h1M21 42h1M23 42h2M28 42h1M31 42h1M38 42h1M42 42h2M47 42h1M21 43h3M27 43h2M31 43h1M37 43h2M43 43h2M47 43h1M16 44h3M22 44h1M26 44h2M30 44h2M37 44h1M44 44h2M47 44h1M15 45h1M19 45h1M23 45h24M15 46h5M48 46h5M48 47h1M53 47h1M48 48h5"
+            />
+            <path
+              stroke="#494949"
+              d="M30 30h3M31 31h2M33 32h2M33 33h1M37 33h1M26 34h1M25 35h1M44 41h1M44 42h1M24 43h1M45 43h2M23 44h2M46 44h1"
+            />
+            <path stroke="#333333" d="M33 30h3M28 31h2M33 31h3" />
+            <path
+              stroke="#686868"
+              d="M36 30h1M36 31h2M36 32h3M36 33h1M42 35h2M26 36h1M42 36h1M26 37h1M22 41h2M45 41h2M22 42h1M45 42h2"
+            />
+            <path stroke="#191919" d="M28 32h3M29 33h2" />
+            <path stroke="#242424" d="M31 33h1M32 43h1M32 44h1" />
+            <path
+              stroke="#5b5b5b"
+              d="M27 34h1M29 34h3M35 34h1M30 35h2M41 35h1M35 36h2M36 37h1M35 38h2M31 39h1M34 39h1M34 40h1M41 40h2"
+            />
+            <path
+              stroke="#404040"
+              d="M39 34h2M35 35h1M38 35h3M34 37h1M26 39h1M33 39h1M26 40h1M33 40h1"
+            />
+            <path
+              stroke="#828282"
+              d="M34 35h1M27 36h2M30 36h1M32 36h3M39 36h3M27 37h2M32 37h2M35 37h1M39 37h2M29 38h1M38 38h3M35 39h2M38 39h2M35 40h2M39 40h1M43 40h1M16 45h3M49 47h4"
+            />
+            <path
+              stroke="#2d2d2d"
+              d="M38 36h1M38 37h1M31 38h1M34 38h1M27 39h3M27 40h2M30 40h1"
+            />
+            <path
+              stroke="#343434"
+              d="M19 38h2M26 41h1M33 41h1M26 42h1M33 42h1M41 43h2M41 44h2"
+            />
+            <path stroke="#1f1f1f" d="M33 38h1" />
+            <path
+              stroke="#4b4b4b"
+              d="M25 41h1M27 41h1M34 41h1M39 41h2M25 42h1M27 42h1M34 42h1M39 42h3M26 43h1M33 43h1M33 44h1"
+            />
+            <path
+              stroke="#9b9b9b"
+              d="M28 41h1M32 41h1M37 41h1M29 42h2M37 42h1M29 43h2M35 43h1M39 43h2M28 44h2M35 44h1M38 44h3"
+            />
+            <path
+              stroke="#6c6c6c"
+              d="M30 41h1M35 41h2M43 41h1M32 42h1M35 42h2M25 43h1M34 43h1M36 43h1M25 44h1M34 44h1M36 44h1M43 44h1"
+            />
+          </svg>
+        )}
+      </Grid>
     );
   }
 
