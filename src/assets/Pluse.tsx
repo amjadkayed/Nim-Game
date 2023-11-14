@@ -25,7 +25,7 @@ const Plus: FC<PlusProps> = ({
       item
       height={height}
       width={width}
-      display={"inline"}
+      // display={"inline"}
       // position={"absolute"}
       onMouseDown={() => {
         playSoundOnClick();

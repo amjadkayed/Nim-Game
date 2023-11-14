@@ -28,51 +28,64 @@ const Counter: FC<CounterProps> = ({
 
   return (
     <Grid
+      // bgcolor={"red"}
       container
       height={height}
-      width={width}
+      width={"47%"}
       alignContent={"center"}
-      justifyContent={"center"}
+      justifyContent={"space-between"}
       alignItems={"center"}
       justifyItems={"center"}
       zIndex={"20"}
       direction={"row"}
-      marginRight={"16%"}
+      // marginRight={"16%"}
       {...rest}
     >
       <Typography
-        fontSize={"2vh"}
+        fontSize={"3vh"}
         position={"relative"}
         color={"white"}
         // left={'22%'}
-        marginRight={"1%"}
+        // marginRight={"10%"}
         style={{ userSelect: "none" }}
       >
-        Number of Rows :
+        {version === "v1" ? "Number of rocks :" : "Number of Rows :"}
       </Typography>
-      <Minus
-        width="2%"
-        position={"relative"}
-        onClick={() => updateCounter(-1)}
-        version={version}
-        style={{ cursor: "pointer" }}
-      />
-      <Typography
-        fontSize={"5vh"}
-        position={"relative"}
-        color={"white"}
-        marginX={"2%"}
-        style={{ userSelect: "none" }}
+      <Grid
+        container
+        height={"100%"}
+        width={"28%"}
+        direction={"row"}
+        alignContent={"center"}
+        justifyContent={"end"}
+        alignItems={"center"}
+        justifyItems={"center"}
+        // display={"inline"}
       >
-        {counter}
-      </Typography>
-      <Plus
-        width="2%"
-        position={"relative"}
-        onClick={() => updateCounter(1)}
-        version={version}
-        style={{ cursor: "pointer" }}
-      />
+        <Minus
+          width="13%"
+          // position={"relative"}
+          onClick={() => updateCounter(-1)}
+          version={version}
+          style={{ cursor: "pointer" }}
+        />
+        <Typography
+          fontSize={"5vh"}
+          // position={"relative"}
+          color={"white"}
+          marginX={"10%"}
+          style={{ userSelect: "none" }}
+        >
+          {counter}
+        </Typography>
+        <Plus
+          width="13%"
+          // position={"relative"}
+          onClick={() => updateCounter(1)}
+          version={version}
+          style={{ cursor: "pointer" }}
+        />
+      </Grid>
     </Grid>
   );
 };

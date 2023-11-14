@@ -7,6 +7,7 @@ import { GameType } from "../../Game";
 import GrassBackGround from "../../assets/GrassBackGround";
 import ChooseDifficulty from "../../components/ChooseDifficulty";
 import Counter from "../../components/Counter";
+import CheckBox from "../../components/CheckBox";
 
 type GameConfigProps = {
   setCurrentPage: (nextPage: string) => void;
@@ -33,7 +34,17 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
       flexDirection={"column"}
       gap={"2%"}
     >
-      {game.version === "v1" && <GrassBackGround width="110%" />}
+      {game.version === "v1" && <GrassBackGround width="110%" zIndex={-5} />}
+
+      <Grid
+        container
+        position={"absolute"}
+        height={"90%"}
+        width={"57%"}
+        zIndex={-3}
+        bgcolor={"rgba(0,0,0,0.5)"}
+        borderRadius={"3%"}
+      ></Grid>
 
       <Typography
         top={"6%"}
@@ -52,14 +63,31 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
         version={game.version}
         setDifficulty={(hello: string) => {}}
         height="8%"
-        top={"16%"}
+        top={"-16%"}
+        position={"relative"}
       />
 
       <Counter
         version={game.version}
         height="15%"
-        position={"absolute"}
-        top={"55%"}
+        position={"relative"}
+        top={"12%"}
+      />
+
+      <CheckBox
+        version={game.version}
+        position="relative"
+        height="6%"
+        top={"7%"}
+        text="enable hints"
+      />
+
+      <CheckBox
+        version={game.version}
+        position="relative"
+        height="6%"
+        top={"7%"}
+        text="enable redo"
       />
 
       <PixelButton
@@ -72,7 +100,6 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
           setCurrentPage("GamePlay");
         }}
       />
-
       <PixelButton
         color={"#99343b"}
         left={"5%"}

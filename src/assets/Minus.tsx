@@ -26,7 +26,7 @@ const Minus: FC<MinusProps> = ({
       item
       height={height}
       width={width}
-      display={"inline"}
+      // display={"inline"}
       // position={"absolute"}
       onMouseDown={() => {
         playSoundOnClick();
