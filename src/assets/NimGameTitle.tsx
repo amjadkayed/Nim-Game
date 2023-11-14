@@ -4,7 +4,7 @@ import { FC } from "react";
 type NimGameTitleProps = {
   height?: string;
   width?: string;
-  version: string;
+  version: string | null;
   [key: string]: unknown;
 };
 

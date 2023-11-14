@@ -48,7 +48,7 @@ const Cloud1: FC<Cloud1Props> = ({
       width={width}
       display={"block"}
       position={"absolute"}
-      className="cloud-animation"
+      // className="cloud-animation"
       {...rest}
     >
       <svg

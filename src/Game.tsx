@@ -2,12 +2,12 @@ import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import "./index.css";
 import MainMenu from "./Pages/MainMenuPage/MainMenu";
 import GamePlay from "./Pages/GamePlayPage/GamePlay";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChooseVersion from "./Pages/ChooseVersionPage/ChooseVersion";
-import Levels from "./Pages/Levels/Levels";
+import GameConfig from "./Pages/GameConfigPage/GameConfig";
 
 export type GameType = {
-  version: string;
+  version: string | null;
   gameConfig: {
     currentTurn: any;
     PlayerOnePoints: number;
@@ -35,7 +35,7 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState("ChooseVersion");
   const [game, setGame] = useState<GameType>({
-    version: "",
+    version: null,
     gameConfig: {
       currentTurn: null,
       PlayerOnePoints: 0,
@@ -53,6 +53,18 @@ const App = () => {
       isHintEnabled: false,
     },
   });
+
+  useEffect(() => {
+    if (game.version === "v1") {
+      if (currentPage === "GameConfig") {
+        document.body.style.backgroundColor = "#4b632a";
+      } else document.body.style.backgroundColor = "#27F2DB";
+    } else if (game.version === "v2") {
+      document.body.style.backgroundColor = "#1b0c3b";
+    } else {
+      document.body.style.backgroundColor = "#000000";
+    }
+  }, [currentPage]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -80,11 +92,11 @@ const App = () => {
             game={game}
           />
         )}
-        {currentPage === "Levels" && (
-          <Levels 
-          setCurrentPage={setCurrentPage} 
-          setGame={setGame}
-          game={game}
+        {currentPage === "GameConfig" && (
+          <GameConfig
+            setCurrentPage={setCurrentPage}
+            setGame={setGame}
+            game={game}
           />
         )}
         {currentPage === "GamePlay" && (
