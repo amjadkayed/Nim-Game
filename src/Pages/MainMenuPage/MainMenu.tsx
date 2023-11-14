@@ -7,6 +7,8 @@ import Moon from "../../assets/Moon";
 import { FC, useEffect } from "react";
 import { GameType } from "../../Game";
 import V1Background from "../../assets/V1Background";
+import Sun from "../../assets/sun";
+import Cloud3 from "../../assets/Cloud3";
 
 type MainMenuProps = {
   setCurrentPage: (nextPage: string) => void;
@@ -65,6 +67,8 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
       {game.version === "v1" && (
         <>
           <V1Background width="110%" position={"absolute"} bottom={"-25%"} />
+          <Sun height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
+          <Cloud3 height="20%" position={"absolute"} top={"8%"} right={'10%'} />
         </>
       )}
       {game.version === "v2" && (
