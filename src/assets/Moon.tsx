@@ -4,7 +4,7 @@ import { FC } from "react";
 type MoonProps = {
   height?: string;
   width?: string;
-  version: string;
+  version: string | null;
   
   [key: string]: unknown;
 };

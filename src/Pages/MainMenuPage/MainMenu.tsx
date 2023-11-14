@@ -4,7 +4,7 @@ import NimGameTitle from "../../assets/NimGameTitle";
 import PixelButton from "../../components/PixelButton";
 import Cloud2 from "../../assets/Cloud2";
 import Moon from "../../assets/Moon";
-import { FC, useEffect } from "react";
+import { FC, useEffect, version } from "react";
 import { GameType } from "../../Game";
 import V1Background from "../../assets/V1Background";
 import Sun from "../../assets/sun";
@@ -17,14 +17,6 @@ type MainMenuProps = {
 };
 
 const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
-  useEffect(() => {
-    if (game.version === "v1") {
-      document.body.style.backgroundColor = "#27F2DB";
-    } else if (game.version === "v2") {
-      document.body.style.backgroundColor = "#1b0c3b";
-    }
-  }, []);
-
   return (
     <Grid
       container
@@ -37,12 +29,12 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
       flexDirection={"column"}
       gap={"2%"}
     >
-      <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
+      {/* <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
       <Cloud2 height="20%" position={"absolute"} left={"15%"} />
       <Cloud1 height="20%" position={"absolute"} right={"10%"} bottom={"20%"} />
       <Cloud2 height="20%" position={"absolute"} left={"50%"} />
       <Cloud2 height="20%" position={"absolute"} left={"50%"} />
-      <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} />
+      <Cloud1 height="20%" position={"absolute"} right={"50%"} bottom={"20%"} /> */}
 
       <NimGameTitle
         top={game.version === "v1" ? "10%" : "10%"}
@@ -50,14 +42,24 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
         position={"relative"}
         version={game.version}
       />
-
+      <PixelButton
+        color={"#ff0000"}
+        left={"5%"}
+        bottom={"5%"}
+        position={"absolute"}
+        text="Choose Version"
+        onClick={() => {
+          setCurrentPage("ChooseVersion");
+          setGame({ ...game, version: null });
+        }}
+      />
       <PixelButton
         color={"#298D72"}
         top={"13%"}
         position={"relative"}
         text="play"
         onClick={() => {
-          setCurrentPage("Levels");
+          setCurrentPage("GameConfig");
         }}
       />
       <PixelButton
@@ -76,7 +78,7 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
         <>
           <V1Background width="110%" position={"absolute"} bottom={"-25%"} />
           <Sun height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
-          <Cloud3 height="20%" position={"absolute"} top={"8%"} right={'10%'} />
+          <Cloud3 height="20%" position={"absolute"} top={"8%"} right={"10%"} />
         </>
       )}
       {game.version === "v2" && (
@@ -88,7 +90,13 @@ const MainMenu: FC<MainMenuProps> = ({ setCurrentPage, setGame, game }) => {
             bottom={"20%"}
           />
           <Cloud2 height="20%" position={"absolute"} left={"15%"} />
-          <Moon  version={game.version} height="45%" position={"absolute"} left={"-5%"} top={"-15%"} />
+          <Moon
+            version={game.version}
+            height="45%"
+            position={"absolute"}
+            left={"-5%"}
+            top={"-15%"}
+          />
         </>
       )}
     </Grid>

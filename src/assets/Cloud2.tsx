@@ -18,7 +18,7 @@ const Cloud2: FC<Cloud2Props> = ({
       height={height}
       width={width}
       display={"block"}
-      className="cloud-animation"
+      // className="cloud-animation"
       position={"absolute"}
       {...rest}
     >
