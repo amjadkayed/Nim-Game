@@ -41,7 +41,7 @@ const Game = () => {
       currentTurn: "p1",
       PlayerOnePoints: 0,
       PlayerTwoPoints: 0,
-      currentGameState: null,
+      currentGameState: [4, 5, 3],
     },
     Settings: {
       masterVolume: 100,

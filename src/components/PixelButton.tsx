@@ -12,6 +12,8 @@ type PixelButtonProps = {
   width?: string;
   color?: string;
   text?: string;
+  textSize?: string;
+  textColor?: string;
   [key: string]: unknown;
 };
 
@@ -20,16 +22,18 @@ const PixelButton: FC<PixelButtonProps> = ({
   width = "auto",
   color = "#6b2429",
   text,
+  textSize = null,
+  textColor = null,
   ...rest
 }) => {
   const [onHover, setOnHover] = useState(false);
   const [onMouseDown, setOnMouseDown] = useState(false);
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
   const [playSoundOnClick] = useSound(onButtonClickSound);
-
+  const fontColor = textColor || "#ffffff";
   return (
     <Grid
-      item
+      // item
       height={height}
       width={width}
       display={"block"}
@@ -71,8 +75,8 @@ const PixelButton: FC<PixelButtonProps> = ({
         }}
       >
         <Typography
-          color={onMouseDown ? "lightgray" : "white"}
-          fontSize={"3vh"}
+          color={onMouseDown ? newShade(fontColor, -10) : fontColor}
+          fontSize={textSize || "3vh"}
           align="center"
           flexWrap={"wrap"}
           style={{

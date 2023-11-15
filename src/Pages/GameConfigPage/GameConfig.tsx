@@ -54,7 +54,7 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
         // position={"absolute"}
         height={"90%"}
         width={"57%"}
-        padding={"4%"}
+        padding={"6%"}
         // zIndex={-3}
         bgcolor={"rgba(0,0,0,0.5)"}
         borderRadius={"3%"}
@@ -92,7 +92,13 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
           )}
 
           {game.version === "v1" && (
-            <HeapCustomization height="13%" width='100%' position={"relative"} />
+            <HeapCustomization
+              setGame={setGame}
+              gameHeaps={game.gameConfig.currentGameState}
+              width="100%"
+              height="25%"
+              position={"relative"}
+            />
           )}
           {game.version === "v2" && (
             <Counter version={game.version} height="15%" />
@@ -157,6 +163,7 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             text={
               game.GameCustomization.isTwoPlayer ? "One Player" : "two Players"
             }
+            textSize={"2.4vh"}
             width="28%"
             onClick={() => {
               setGame({
