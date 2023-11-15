@@ -27,7 +27,6 @@ export type GameType = {
 };
 
 const Game = () => {
-
   const theme = createTheme({
     typography: {
       fontFamily: '"Public Pixel", sans-serif;',
@@ -39,7 +38,7 @@ const Game = () => {
   const [game, setGame] = useState<GameType>({
     version: null,
     gameConfig: {
-      currentTurn: null,
+      currentTurn: "p1",
       PlayerOnePoints: 0,
       PlayerTwoPoints: 0,
       currentGameState: null,
@@ -50,7 +49,7 @@ const Game = () => {
       SFXVolume: 100,
     },
     GameCustomization: {
-      numberOfRows: 0,
+      numberOfRows: 4,
       isTwoPlayer: false,
       isHintEnabled: false,
     },

@@ -28,10 +28,10 @@ const Counter: FC<CounterProps> = ({
 
   return (
     <Grid
-      // bgcolor={"red"}
+      // bgcolor={"blue"}
       container
       height={height}
-      width={"47%"}
+      width={"100%"}
       alignContent={"center"}
       justifyContent={"space-between"}
       alignItems={"center"}
@@ -49,7 +49,7 @@ const Counter: FC<CounterProps> = ({
         // marginRight={"10%"}
         style={{ userSelect: "none" }}
       >
-        {version === "v1" ? "Number of rocks :" : "Number of Rows :"}
+        {"Number of Rows"}
       </Typography>
       <Grid
         container

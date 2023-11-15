@@ -25,7 +25,8 @@ const CheckBox: FC<CheckBoxProps> = ({
     <Grid
       container
       height={height}
-      width={"47%"}
+      width={"100%"}
+      // bgcolor={"yellow"}
       alignContent={"space-between"}
       justifyContent={"space-between"}
       alignItems={"space-between"}

@@ -33,7 +33,7 @@ const PixelButton: FC<PixelButtonProps> = ({
       height={height}
       width={width}
       display={"block"}
-      position={"absolute"}
+      // position={"absolute"}
       onMouseEnter={() => {
         setOnHover(true);
         playSoundOnHover();
@@ -74,6 +74,7 @@ const PixelButton: FC<PixelButtonProps> = ({
           color={onMouseDown ? "lightgray" : "white"}
           fontSize={"3vh"}
           align="center"
+          flexWrap={"wrap"}
           style={{
             textShadow: onMouseDown ? "2px 2px black" : "",
             userSelect: "none",

@@ -38,14 +38,15 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
       item
       height={height}
       width={width}
-      display={"block"}
+      // display={"block"}
       zIndex={"20"}
-      position={"absolute"}
+      // bgcolor={"red"}
+      // position={"absolute"}
       {...rest}
     >
       <DifficultyIcon
-        height="200%"
-        marginBottom={"5%"}
+        height="40%"
+        marginBottom={"1%"}
         position={"relative"}
         difficulty={currentDifficulty}
         version={version}
@@ -55,11 +56,11 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
         shape-rendering="crispEdges"
         viewBox="6.5 24.5 43 7"
         style={{
-          right: "1%",
+          // right: "1%",
           position: "relative",
           display: "block",
           width: "100%",
-          height: "100%",
+          height: "25%",
         }}
       >
         <path
@@ -144,10 +145,11 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
       </svg>
       <Typography
         color={"white"}
-        fontSize={"5vh"}
+        fontSize={"4vh"}
         width={"100%"}
+        // height={"10%"}
         textAlign={"center"}
-        paddingY={"7%"}
+        paddingTop={"3%"}
         style={{
           userSelect: "none",
         }}
