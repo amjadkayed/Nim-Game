@@ -1,15 +1,17 @@
 import { Grid, Typography } from "@mui/material";
 import { FC, useState } from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import useSound from "use-sound";
-import CheckBoxeButtonSound from "../Sounds/CheckBoxsound.mp3";
-import { newShade } from "../utils";
+import { GameType } from "../Game";
+
 type CheckBoxProps = {
   height?: string;
   width?: string;
   version: string | null;
   text?: string;
+  path: string;
+  setGame: (game: any) => void;
+  game: GameType;
   [key: string]: unknown;
 };
 
@@ -18,20 +20,22 @@ const CheckBox: FC<CheckBoxProps> = ({
   width = "auto",
   version,
   text,
+  path,
+  setGame,
+  game,
   ...rest
 }) => {
-  const [isSelected, setIsSelected] = useState(false);
+  const isSelected: boolean = (game.GameCustomization as any)?.[path];
   return (
     <Grid
       container
       height={height}
       width={"100%"}
-      // bgcolor={"yellow"}
       alignContent={"space-between"}
       justifyContent={"space-between"}
       alignItems={"space-between"}
       justifyItems={"space-between"}
-      zIndex={20}
+      zIndex={25}
       {...rest}
     >
       <Typography
@@ -50,7 +54,13 @@ const CheckBox: FC<CheckBoxProps> = ({
         paddingRight={"6%"}
         style={{ cursor: "pointer" }}
         onClick={() => {
-          setIsSelected((prev: any) => !prev);
+          setGame((prevGame: GameType) => ({
+            ...prevGame,
+            GameCustomization: {
+              ...prevGame.GameCustomization,
+              [path]: !isSelected,
+            },
+          }));
         }}
       >
         {isSelected ? (
@@ -63,6 +73,7 @@ const CheckBox: FC<CheckBoxProps> = ({
               width: "100%",
               height: "100%",
               cursor: "pointer",
+              zIndex: 30,
             }}
           >
             <path

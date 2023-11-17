@@ -1,3 +1,5 @@
+import { GameType } from "./Game";
+
 export function newShade(color: any, percent: any) {
   const num: any = parseInt(color.replace("#", ""), 16),
     amt = Math.round(2.55 * percent),
@@ -16,3 +18,28 @@ export function newShade(color: any, percent: any) {
       .slice(1)
   );
 }
+
+
+export const GameStateDefault: GameType = {
+  version: null,
+  gameConfig: {
+    currentTurn: "p1",
+    PlayerOnePoints: 0,
+    PlayerTwoPoints: 0,
+    v1CurrentGameState: [],
+    v2CurrentGameState: [],
+  },
+  Settings: {
+    masterVolume: 100,
+    musicVolume: 100,
+    SFXVolume: 100,
+  },
+  GameCustomization: {
+    v2NumberOfRows: 3,
+    v1InitGameState: [4],
+    isTwoPlayer: false,
+    isHintEnabled: false,
+    isTakeBackEnabled: false,
+    difficulty: "easy",
+  },
+};

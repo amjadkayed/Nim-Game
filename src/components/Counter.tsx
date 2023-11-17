@@ -4,11 +4,14 @@ import { FC, useState } from "react";
 import useSound from "use-sound";
 import Minus from "../assets/Minus";
 import Plus from "../assets/Pluse";
+import { GameType } from "../Game";
 
 type CounterProps = {
   height?: string;
   width?: string;
   version: string | null;
+  setGame: (game: any) => void;
+  game: GameType;
   [key: string]: unknown;
 };
 
@@ -16,19 +19,27 @@ const Counter: FC<CounterProps> = ({
   height = "auto",
   width = "100%",
   version,
+  setGame,
+  game,
   ...rest
 }) => {
-  const [counter, setCounter] = useState(4);
-
-  const updateCounter = (number: number) => {
-    setCounter((count) => {
-      return Math.max(4, Math.min(9, count + number));
-    });
+  const increaseCounterBy = (number: number) => {
+    setGame(
+      (prevGame: GameType): GameType => ({
+        ...prevGame,
+        GameCustomization: {
+          ...prevGame.GameCustomization,
+          v2NumberOfRows: Math.min(
+            8,
+            Math.max(prevGame.GameCustomization.v2NumberOfRows + number, 3)
+          ),
+        },
+      })
+    );
   };
-
+  const counter = game.GameCustomization.v2NumberOfRows;
   return (
     <Grid
-      // bgcolor={"blue"}
       container
       height={height}
       width={"100%"}
@@ -38,15 +49,12 @@ const Counter: FC<CounterProps> = ({
       justifyItems={"center"}
       zIndex={"20"}
       direction={"row"}
-      // marginRight={"16%"}
       {...rest}
     >
       <Typography
         fontSize={"3vh"}
         position={"relative"}
         color={"white"}
-        // left={'22%'}
-        // marginRight={"10%"}
         style={{ userSelect: "none" }}
       >
         {"Number of Rows"}
@@ -60,18 +68,15 @@ const Counter: FC<CounterProps> = ({
         justifyContent={"end"}
         alignItems={"center"}
         justifyItems={"center"}
-        // display={"inline"}
       >
         <Minus
           width="13%"
-          // position={"relative"}
-          onClick={() => updateCounter(-1)}
+          onClick={() => increaseCounterBy(-1)}
           version={version}
           style={{ cursor: "pointer" }}
         />
         <Typography
           fontSize={"5vh"}
-          // position={"relative"}
           color={"white"}
           marginX={"10%"}
           style={{ userSelect: "none" }}
@@ -80,8 +85,7 @@ const Counter: FC<CounterProps> = ({
         </Typography>
         <Plus
           width="13%"
-          // position={"relative"}
-          onClick={() => updateCounter(1)}
+          onClick={() => increaseCounterBy(1)}
           version={version}
           style={{ cursor: "pointer" }}
         />

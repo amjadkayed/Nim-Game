@@ -21,37 +21,28 @@ const HeapCustomization: FC<HeapCustomizationProps> = ({
   text,
   ...rest
 }) => {
-  // const removeElementAtIndex = (array: any[], index: number): any[] => {
-  //   // Check if the index is within the valid range
-  //   if (index >= 0 && index < array.length) {
-  //     // Use Array.splice to remove the element at the specified index
-  //     array.splice(index, 1);
-  //   } else {
-  //     console.error("Invalid index. Index is out of bounds.");
-  //   }
-
-  //   // Return the modified array
-  //   return array;
-  // };
-
   const handleHeapDelete = (index: number) => {
     const newGameHeaps = [...gameHeaps];
     newGameHeaps.splice(index, 1);
     setGame((game: GameType): GameType => {
       return {
         ...game,
-        gameConfig: { ...game.gameConfig, currentGameState: newGameHeaps },
+        GameCustomization: {
+          ...game.GameCustomization,
+          v1InitGameState: newGameHeaps,
+        },
       };
     });
   };
+
   const addHeap = () => {
     if (gameHeaps.length < 7)
       setGame((game: GameType): GameType => {
         return {
           ...game,
-          gameConfig: {
-            ...game.gameConfig,
-            currentGameState: [...game.gameConfig.currentGameState, 1],
+          GameCustomization: {
+            ...game.GameCustomization,
+            v1InitGameState: [...game.GameCustomization.v1InitGameState, 1],
           },
         };
       });
@@ -64,7 +55,10 @@ const HeapCustomization: FC<HeapCustomizationProps> = ({
     setGame((game: GameType): GameType => {
       return {
         ...game,
-        gameConfig: { ...game.gameConfig, currentGameState: newGameHeaps },
+        GameCustomization: {
+          ...game.GameCustomization,
+          v1InitGameState: newGameHeaps,
+        },
       };
     });
   };

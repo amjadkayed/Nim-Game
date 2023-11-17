@@ -6,23 +6,25 @@ import useSound from "use-sound";
 import HoverOnButtonSound from "../Sounds/HoverOnButton.mp3";
 import onButtonClickSound from "../Sounds/ButtonMouseClick.mp3";
 import DifficultyIcon from "./DifficultyIcon";
+import { GameType } from "../Game";
 
 type ChooseDifficultyProps = {
   height?: string;
   width?: string;
   version: string | null;
-  setDifficulty: (difficulty: string) => void;
+  setGame: (game: any) => void;
+  game: GameType;
   [key: string]: unknown;
 };
 
 const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
   height = "auto",
   width = "auto",
-  setDifficulty,
+  setGame,
+  game,
   version,
   ...rest
 }) => {
-  const [currentDifficulty, setCurrentDifficulty] = useState("easy");
   const [mouseHover, setMouseHover] = useState<string | null>(null);
 
   const [playSoundOnHover] = useSound(HoverOnButtonSound);
@@ -32,23 +34,14 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
   if (version === "v2") {
     baseColor = "#214e75";
   }
-
+  const currentDifficulty = game.GameCustomization.difficulty;
   return (
-    <Grid
-      item
-      height={height}
-      width={width}
-      // display={"block"}
-      zIndex={"20"}
-      // bgcolor={"red"}
-      // position={"absolute"}
-      {...rest}
-    >
+    <Grid item height={height} width={width} zIndex={"20"} {...rest}>
       <DifficultyIcon
         height="40%"
         marginBottom={"1%"}
         position={"relative"}
-        difficulty={currentDifficulty}
+        difficulty={game.GameCustomization.difficulty}
         version={version}
       />
       <svg
@@ -56,7 +49,6 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
         shape-rendering="crispEdges"
         viewBox="6.5 24.5 43 7"
         style={{
-          // right: "1%",
           position: "relative",
           display: "block",
           width: "100%",
@@ -83,7 +75,15 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
             setMouseHover(null);
           }}
           onClick={() => {
-            setCurrentDifficulty("easy");
+            setGame((game: GameType): GameType => {
+              return {
+                ...game,
+                GameCustomization: {
+                  ...game.GameCustomization,
+                  difficulty: "easy",
+                },
+              };
+            });
             playSoundOnClick();
           }}
           style={{
@@ -108,7 +108,15 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
             setMouseHover(null);
           }}
           onClick={() => {
-            setCurrentDifficulty("medium");
+            setGame((game: GameType): GameType => {
+              return {
+                ...game,
+                GameCustomization: {
+                  ...game.GameCustomization,
+                  difficulty: "medium",
+                },
+              };
+            });
             playSoundOnClick();
           }}
           style={{
@@ -133,7 +141,15 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
             setMouseHover(null);
           }}
           onClick={() => {
-            setCurrentDifficulty("hard");
+            setGame((game: GameType): GameType => {
+              return {
+                ...game,
+                GameCustomization: {
+                  ...game.GameCustomization,
+                  difficulty: "hard",
+                },
+              };
+            });
             playSoundOnClick();
           }}
           style={{
@@ -147,7 +163,6 @@ const ChooseDifficulty: FC<ChooseDifficultyProps> = ({
         color={"white"}
         fontSize={"4vh"}
         width={"100%"}
-        // height={"10%"}
         textAlign={"center"}
         paddingTop={"3%"}
         style={{

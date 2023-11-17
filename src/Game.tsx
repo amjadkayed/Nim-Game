@@ -1,10 +1,11 @@
 import { Grid, ThemeProvider, createTheme } from "@mui/material";
 import "./index.css";
 import MainMenu from "./Pages/MainMenuPage/MainMenu";
-import GamePlay from "./Pages/GamePlayPage/GamePlay";
+import V2GamePlay from "./Pages/GamePlayPage/V2GamePlay";
 import { useEffect, useState } from "react";
 import ChooseVersion from "./Pages/ChooseVersionPage/ChooseVersion";
 import GameConfig from "./Pages/GameConfigPage/GameConfig";
+import { GameStateDefault } from "./utils";
 
 export type GameType = {
   version: string | null;
@@ -12,7 +13,8 @@ export type GameType = {
     currentTurn: any;
     PlayerOnePoints: number;
     PlayerTwoPoints: number;
-    currentGameState: any;
+    v1CurrentGameState: number[];
+    v2CurrentGameState: number[];
   };
   Settings: {
     masterVolume: number;
@@ -20,9 +22,12 @@ export type GameType = {
     SFXVolume: number;
   };
   GameCustomization: {
-    numberOfRows: number;
+    v1InitGameState: number[];
+    v2NumberOfRows: number;
     isTwoPlayer: boolean;
     isHintEnabled: boolean;
+    isTakeBackEnabled: boolean;
+    difficulty: string;
   };
 };
 
@@ -35,25 +40,7 @@ const Game = () => {
 
   const [currentPage, setCurrentPage] = useState("ChooseVersion");
 
-  const [game, setGame] = useState<GameType>({
-    version: null,
-    gameConfig: {
-      currentTurn: "p1",
-      PlayerOnePoints: 0,
-      PlayerTwoPoints: 0,
-      currentGameState: [4, 5, 3],
-    },
-    Settings: {
-      masterVolume: 100,
-      musicVolume: 100,
-      SFXVolume: 100,
-    },
-    GameCustomization: {
-      numberOfRows: 4,
-      isTwoPlayer: false,
-      isHintEnabled: false,
-    },
-  });
+  const [game, setGame] = useState<GameType>(GameStateDefault);
 
   useEffect(() => {
     if (game.version === "v1") {
@@ -100,8 +87,8 @@ const Game = () => {
             game={game}
           />
         )}
-        {currentPage === "GamePlay" && (
-          <GamePlay
+        {currentPage === "V2GamePlay" && (
+          <V2GamePlay
             setCurrentPage={setCurrentPage}
             setGame={setGame}
             game={game}

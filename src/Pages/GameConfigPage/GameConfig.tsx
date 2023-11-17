@@ -17,12 +17,6 @@ type GameConfigProps = {
 };
 
 const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
-  const [selectedLevel, setSelectedLevel] = useState<string | null>("easy");
-
-  const handleLevelClick = (level: string) => {
-    setSelectedLevel(level);
-  };
-
   return (
     <Grid
       container
@@ -51,11 +45,9 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
         justifyContent={"center"}
         alignItems={"center"}
         justifyItems={"center"}
-        // position={"absolute"}
         height={"90%"}
         width={"57%"}
-        padding={"6%"}
-        // zIndex={-3}
+        padding={"5%"}
         bgcolor={"rgba(0,0,0,0.5)"}
         borderRadius={"3%"}
       >
@@ -84,8 +76,9 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
                 choose difficulty
               </Typography>
               <ChooseDifficulty
+                setGame={setGame}
+                game={game}
                 version={game.version}
-                setDifficulty={(hello: string) => {}}
                 height="40%"
               />
             </>
@@ -94,28 +87,41 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
           {game.version === "v1" && (
             <HeapCustomization
               setGame={setGame}
-              gameHeaps={game.gameConfig.currentGameState}
+              game={game}
+              gameHeaps={game.GameCustomization.v1InitGameState}
               width="100%"
               height="25%"
               position={"relative"}
             />
           )}
+
           {game.version === "v2" && (
-            <Counter version={game.version} height="15%" />
+            <Counter
+              version={game.version}
+              height="15%"
+              setGame={setGame}
+              game={game}
+            />
           )}
 
           <CheckBox
+            setGame={setGame}
+            path={"isHintEnabled"}
+            game={game}
             version={game.version}
             position="relative"
-            height="6%"
+            height="7%"
             marginBottom={"4%"}
             text="enable hints"
           />
 
           <CheckBox
+            setGame={setGame}
+            path={"isTakeBackEnabled"}
+            game={game}
             version={game.version}
             position="relative"
-            height="6%"
+            height="7%"
             marginBottom={"4%"}
             text="enable takeback"
           />
@@ -127,9 +133,10 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             position={"absolute"}
             text="Start"
             onClick={() => {
-              setCurrentPage("GamePlay");
+              setCurrentPage("V2GamePlay");
             }}
           />
+
           <PixelButton
             color={"#99343b"}
             left={"5%"}
@@ -140,6 +147,7 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
               setCurrentPage("MainMenu");
             }}
           />
+
           {game.version === "v2" && (
             <Moon
               version={game.version}
@@ -150,21 +158,16 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             />
           )}
         </Grid>
-        <Grid
-          container
-          width={"100%"}
-          marginBottom={"5%"}
-          justifyContent={"center"}
-          gap={"5%"}
-        >
+
+        <Grid container width={"100%"} justifyContent={"center"} gap={"5%"}>
           <PixelButton
             color={"#1037b5"}
             position={"relative"}
             text={
               game.GameCustomization.isTwoPlayer ? "One Player" : "two Players"
             }
-            textSize={"2.4vh"}
-            width="28%"
+            textSize={"1vw"}
+            width="20%"
             onClick={() => {
               setGame({
                 ...game,
