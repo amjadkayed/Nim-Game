@@ -115,7 +115,7 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             text="enable hints"
           />
 
-          <CheckBox
+          {/* <CheckBox
             setGame={setGame}
             path={"isTakeBackEnabled"}
             game={game}
@@ -124,7 +124,7 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             height="7%"
             marginBottom={"4%"}
             text="enable takeback"
-          />
+          /> */}
 
           <PixelButton
             color={"#298D72"}
@@ -133,7 +133,10 @@ const GameConfig: FC<GameConfigProps> = ({ setCurrentPage, setGame, game }) => {
             position={"absolute"}
             text="Start"
             onClick={() => {
-              setCurrentPage("V2GamePlay");
+              if (game.version === "v2") setCurrentPage("V2GamePlay");
+              else {
+                setCurrentPage("V1GamePlay");
+              }
             }}
           />
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ChooseVersion from "./Pages/ChooseVersionPage/ChooseVersion";
 import GameConfig from "./Pages/GameConfigPage/GameConfig";
 import { GameStateDefault } from "./utils";
+import V1GamePlay from "./Pages/GamePlayPage/V1GamePlay";
 
 export type GameType = {
   version: string | null;
@@ -89,6 +90,13 @@ const Game = () => {
         )}
         {currentPage === "V2GamePlay" && (
           <V2GamePlay
+            setCurrentPage={setCurrentPage}
+            setGame={setGame}
+            game={game}
+          />
+        )}
+        {currentPage === "V1GamePlay" && (
+          <V1GamePlay
             setCurrentPage={setCurrentPage}
             setGame={setGame}
             game={game}

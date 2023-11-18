@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import React, { FC } from "react";
+import { FC } from "react";
 
 type ScoreBoardType = {
   p1Points: number;
@@ -7,6 +7,7 @@ type ScoreBoardType = {
   p1Name: string;
   p2Name: string;
   currentTurn: string;
+  winner: boolean;
   [key: string]: unknown;
 };
 
@@ -16,6 +17,7 @@ const ScoreBoard: FC<ScoreBoardType> = ({
   p1Name,
   p2Name,
   currentTurn,
+  winner,
   ...rest
 }) => {
   return (
@@ -78,7 +80,7 @@ const ScoreBoard: FC<ScoreBoardType> = ({
         direction={"column"}
         bgcolor={"white"}
         height={"100%"}
-        borderRadius={3}
+        // borderRadius={3}
       >
         <Typography
           style={{ userSelect: "none" }}
@@ -86,7 +88,11 @@ const ScoreBoard: FC<ScoreBoardType> = ({
           color={"black"}
           textAlign={"center"}
         >
-          {currentTurn === "p1" ? p1Name : p2Name} {" Turn"}
+          {winner
+            ? "GAme OVer"
+            : currentTurn === "p1"
+            ? p1Name
+            : p2Name + " Turn"}
         </Typography>
       </Grid>
       <Grid

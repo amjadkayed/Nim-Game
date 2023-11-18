@@ -10,6 +10,8 @@ type MatchstickProps = {
   selectedMatchsticks: any[];
   location: any;
   isBurnt: boolean;
+  notEnabled: boolean;
+  numberOfAvailable: number;
   setSelectedMatchsticks: any;
   [key: string]: unknown;
 };
@@ -21,12 +23,13 @@ const Matchstick: FC<MatchstickProps> = ({
   setSelectedMatchsticks,
   location,
   isBurnt,
+  notEnabled,
+  numberOfAvailable,
   ...rest
 }) => {
   const isValidSelection = (rowNumber: number): boolean => {
     for (let i = 0; i < selectedMatchsticks.length; i++) {
       if (selectedMatchsticks[i].row !== rowNumber) {
-        //some error handling must be here
         return false;
       }
     }
@@ -39,7 +42,6 @@ const Matchstick: FC<MatchstickProps> = ({
         selectedMatchsticks[i].row === rowNumber &&
         selectedMatchsticks[i].index === index
       ) {
-        //some error handling must be here
         return true;
       }
     }
@@ -48,14 +50,10 @@ const Matchstick: FC<MatchstickProps> = ({
 
   const [onHover, setOnHover] = useState(false);
 
-  const [isMatchstickOn, setIsMatchstickOn] = useState(
-    selectedMatchsticks.includes(location)
-  );
   const [playMatchstickOnSound, { stop: stopOnSound }] =
     useSound(OnMatchstickOn);
   const [playMatchstickOffSound, { stop: stopOffSound }] =
     useSound(onMatchstickOff);
-
   return (
     <Grid
       container
@@ -68,11 +66,11 @@ const Matchstick: FC<MatchstickProps> = ({
       position={"relative"}
       zIndex={30}
       onMouseEnter={() => {
-        if (isBurnt) return;
+        if (isBurnt || notEnabled) return;
         setOnHover(true);
       }}
       onMouseDown={() => {
-        if (isBurnt) return;
+        if (isBurnt || notEnabled) return;
         if (!isValidSelection(location.row)) return;
         if (isMatchSelected(location.row, location.index)) {
           setSelectedMatchsticks((prev: any) => [
@@ -87,19 +85,18 @@ const Matchstick: FC<MatchstickProps> = ({
         }
         stopOnSound();
         stopOffSound();
-        if (isMatchstickOn) {
+        if (isMatchSelected(location.row, location.index)) {
           playMatchstickOffSound();
         } else {
           playMatchstickOnSound();
         }
-        setIsMatchstickOn((prev) => !prev);
       }}
       onMouseLeave={() => {
-        if (isBurnt) return;
+        if (isBurnt || notEnabled) return;
         setOnHover(false);
       }}
       style={{
-        cursor: isBurnt ? "auto" : "pointer",
+        cursor: isBurnt || notEnabled ? "auto" : "pointer",
       }}
       {...rest}
     >
@@ -156,7 +153,7 @@ const Matchstick: FC<MatchstickProps> = ({
           <path stroke="#2d1313" d="M47 33h1" />
           <path stroke="#737373" d="M55 33h3" />
         </svg>
-      ) : isMatchstickOn ? (
+      ) : isMatchSelected(location.row, location.index) ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           shape-rendering="crispEdges"
